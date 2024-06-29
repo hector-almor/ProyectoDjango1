@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <title>Eliminar Categoria</title> 
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    </head> 
+    <body> 
+        <div class="content section"> 
+            <div class="block">
+                <h2>Eliminar Categoria</h2>
+                <form action="{% url 'home' %}" method="get"><button type="submit">Inicio</button></form>
+                <p>¿Estás seguro de que quieres eliminar la categoria "{{ object.nombre }}"?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit">Eliminar</button>
+                </form>
+            </div>
+        </div> 
+    </body> 
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <title>Listado de Categorias</title> 
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    </head> 
+    <body> 
+        <div class="content section"> 
+            <div class="block">
+                <h2>Listado de Categorias</h2>
+                <form action="{% url 'home' %}" method="get"><button type="submit">Inicio</button></form>
+                
+                {#<a href="{% url 'membresia-create' %}">Crear Membresia</a>#}
+
+                {% for categoria in categorias %}
+                    <ul>
+                        <li>
+                            {{ categoria }}: {{categoria.descripcion}}
+                            <form action="{% url 'categoria_update' categoria.pk %}" method="GET">
+                                <button type="submit">Actualizar</button>
+                            </form>
+                            <br>
+                            <form action="{% url 'categoria_delete' categoria.pk %}" method="GET">
+                                <button type="submit">Eliminar</button>
+                            </form> 
+                        </li>
+                    </ul>
+                {% empty %}
+                    <ul>
+                        <li>No hay categorias disponibles.</li>
+                    </ul>
+                {% endfor %}
+            </div>
+        </div> 
+    </body> 
+</html>
